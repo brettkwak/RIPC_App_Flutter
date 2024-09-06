@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home.dart';
 import 'history.dart';
@@ -8,56 +9,76 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       debugShowCheckedModeBanner: false, //오른쪽위 debugBanner 없애기
+//       title: 'RIPC_Flutter',
+//       theme: ThemeData(
+//           primaryColor: Colors.white,
+//           scaffoldBackgroundColor: Colors.white,
+//           appBarTheme: AppBarTheme(
+//             foregroundColor: Colors.black,
+//             backgroundColor: Colors.white,
+//           )
+//       ),
+//       home: MyPage(),
+//
+//     );
+//   }
+// }
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+
+  int _currentIndex=0;
+  List<Widget> body = const [
+    // home(),
+    Icon(Icons.home),
+    // history(),
+    Icon(Icons.folder),
+    settings(),
+    // Icon(Icons.settings),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//      debugShowCheckedModeBanner: false, //오른쪽위 debugBanner 없애기
-      title: 'bottomNavigationBar',
-      home: MyPage(),
-//      home: Center(
-//        child: Container(width:50, height: 50, color: Colors.blue,),
-//      )
-    );
-  }
-}
-
-
-class MyPage extends StatefulWidget { // bottomNavigationBar은 반드시 Stateful이어야함.
-  @override
-  _MyPageState createState() => _MyPageState();
-}
-
-class _MyPageState extends State<MyPage> {
-  int currentIndex =0;
-  final screens = [ //이게 하나하나의 화면이되고, Text등을 사용하거나, dart파일에 있는 class를 넣는다.
-    home(),
-    history(),
-    settings(),
-  ];
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() =>currentIndex = index), //setState를 써야 바뀐다.
-
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+      home: Scaffold(
+        body: Center(
+          child: body[_currentIndex],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (int newIndex) {
+            setState(() {
+              _currentIndex = newIndex;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Home',
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              label: 'History',
+              icon: Icon(Icons.folder),
+            ),
+            BottomNavigationBarItem(
+              label: 'Settings',
+              icon: Icon(Icons.settings),
+            ),
+          ],
+        ),
       ),
     );
   }
