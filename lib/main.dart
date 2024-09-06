@@ -42,17 +42,21 @@ class _MyApp extends State<MyApp> {
 
   int _currentIndex=0;
   List<Widget> body = const [
-    // home(),
-    Icon(Icons.home),
-    // history(),
-    Icon(Icons.folder),
+    home(),
+    history(),
     settings(),
-    // Icon(Icons.settings),
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "RIPC_Flutter",
+      theme: ThemeData(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: Colors.black,
+          selectedLabelStyle: TextStyle(fontSize: 12)
+        )
+      ),
       home: Scaffold(
         body: Center(
           child: body[_currentIndex],
@@ -67,7 +71,8 @@ class _MyApp extends State<MyApp> {
           items: const [
             BottomNavigationBarItem(
               label: 'Home',
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
               label: 'History',
