@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ripc_flutter/mainscreen.dart';
 
 class loginscreen extends StatelessWidget {
@@ -15,6 +16,7 @@ class loginscreen extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
+                    askforpermission();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -29,5 +31,14 @@ class loginscreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void askforpermission() async{
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.notification,
+      Permission.location,
+    ].request();
+    print(statuses[Permission.location]);
+    print(statuses[Permission.notification]);
   }
 }
