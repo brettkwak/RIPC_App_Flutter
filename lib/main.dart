@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ripc_flutter/loginscreen.dart';
 
 void main() {
@@ -13,9 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "RIPC App",
-      theme: ThemeData(
-
-      ),
       home: _getloginscreen(),
     );
   }
