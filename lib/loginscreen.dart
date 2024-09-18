@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ripc_flutter/mainscreen.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class loginscreen extends StatelessWidget {
   const loginscreen({super.key});
@@ -14,18 +15,19 @@ class loginscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    askforpermission();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => mainscreen(),
-                      ),
-                    );
-                  },
-                  child: Text("Sign in with Google"),
-              )
+              SignInButton(
+                Buttons.Google,
+                text: "Sign up with Google",
+                onPressed: () {
+                  askforpermission();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => mainscreen(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
