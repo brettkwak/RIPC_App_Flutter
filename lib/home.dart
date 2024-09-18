@@ -8,6 +8,7 @@ class home extends StatelessWidget {
     return MaterialApp(
       title: "Home screen",
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
