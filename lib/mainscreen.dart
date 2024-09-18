@@ -37,6 +37,7 @@ class _mainscreen extends State<mainscreen> {
           )
       ),
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
           child: body[_currentIndex],
         ),
