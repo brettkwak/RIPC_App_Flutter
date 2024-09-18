@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ripc_flutter/mainscreen.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:ripc_flutter/user_data.dart';
+import 'login_control.dart';
 
 class loginscreen extends StatelessWidget {
   const loginscreen({super.key});
@@ -56,9 +56,4 @@ class loginscreen extends StatelessWidget {
     print(statuses[Permission.location]);
     print(statuses[Permission.notification]);
   }
-}
-
-class LoginAPI {
-  static final _googleSignIn = GoogleSignIn();
-  static Future<GoogleSignInAccount?> login() => _googleSignIn.signIn();
 }
