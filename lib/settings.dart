@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ripc_flutter/about.dart';
 import 'package:ripc_flutter/loginscreen.dart';
 import 'package:ripc_flutter/user_data.dart';
 import 'login_control.dart';
@@ -41,7 +42,12 @@ class settings extends StatelessWidget {
             OutlinedButton(
               child: Text('About'),
               onPressed: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => about(),
+                  ),
+                );
               },
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.black,
