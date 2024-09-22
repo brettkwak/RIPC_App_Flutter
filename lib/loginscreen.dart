@@ -21,17 +21,7 @@ class loginscreen extends StatelessWidget {
                 Buttons.Google,
                 text: "Sign up with Google",
                 onPressed: () async {
-                  var user = await LoginAPI.login();
-                  if (user != null) {
-                    print(user.displayName);
-                    print(user.email);
-                    print(user.id);
-                    print(user.photoUrl);
-                    user_data().email = user.email;
-                    user_data().profile_image_url = user.photoUrl;
-                    user_data().user_name = user.displayName;
-                    user_data().user_id = user.id;
-                  }
+                  loginProcess();
                   askforpermission();
                   Navigator.pushReplacement(
                     context,
