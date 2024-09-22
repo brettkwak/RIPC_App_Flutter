@@ -8,7 +8,7 @@ class FlutterLocalNotification {
 
   static init() async {
     AndroidInitializationSettings androidInitializationSettings =
-        const AndroidInitializationSettings('mipmap/ic_launcher');
+        const AndroidInitializationSettings('ic_launcher_car');
 
     DarwinInitializationSettings iosInitializationSettings =
       const DarwinInitializationSettings(
@@ -25,13 +25,14 @@ class FlutterLocalNotification {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  static Future<void> showNotification() async {
+  static showNotification() async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('channelId', 'channelName',
           channelDescription: 'channel description',
           importance: Importance.max,
           priority: Priority.max,
           showWhen: false,
+          icon : 'ic_directions_car',
         );
 
     const NotificationDetails notificationDetails =
