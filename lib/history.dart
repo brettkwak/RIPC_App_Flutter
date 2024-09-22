@@ -14,27 +14,57 @@ class _historyState extends State<history> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(30),
-          child: TextField(
-            controller: _dateController,
-            decoration: InputDecoration(
-              labelText: 'DATE',
-              filled: true,
-              prefixIcon: Icon(Icons.calendar_today),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none
+        child: Row(
+          children: [
+            Expanded(
+              child : Padding(
+                padding: EdgeInsets.all(30),
+                child: TextField(
+                  controller: _dateController,
+                  decoration: InputDecoration(
+                    labelText: 'START DATE',
+                    filled: false,
+                    prefixIcon: Icon(Icons.calendar_today),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors. black)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue)
+                    )
+                  ),
+                  readOnly: true,
+                  onTap: (){
+                    _selectDate();
+                  },
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue)
-              )
             ),
-            readOnly: true,
-            onTap: (){
-              _selectDate();
-            },
-          ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(30),
+                child: TextField(
+                  controller: _dateController,
+                  decoration: InputDecoration(
+                      labelText: 'END DATE',
+                      filled: false,
+                      prefixIcon: Icon(Icons.calendar_today),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)
+                      )
+                  ),
+                  readOnly: true,
+                  onTap: (){
+                    _selectDate();
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
