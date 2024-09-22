@@ -20,14 +20,17 @@ class mainscreen extends StatefulWidget {
 class _mainscreen extends State<mainscreen> {
 
   int _currentIndex=0;
-  List<Widget> body = const [
+  List<Widget> body = [
     home(),
-    history(),
-    settings(),
   ];
 
   @override
   Widget build(BuildContext context) {
+
+    // add stateful widget to body list
+    body.insert(1, history());
+    body.insert(2, settings());
+
     return MaterialApp(
       title: "RIPC_Flutter",
       theme: ThemeData(
