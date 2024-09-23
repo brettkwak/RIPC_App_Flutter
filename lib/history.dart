@@ -33,7 +33,7 @@ class _historyState extends State<history> {
       body: Column(
         children: [
           Container(
-            height: 50,
+            height: 5,
           ),
           Row(
             children: [
@@ -90,7 +90,7 @@ class _historyState extends State<history> {
             ],
           ),
           Container(
-            height: 30,
+            height: 0,
           ),
           Row(
             children: [
@@ -173,7 +173,49 @@ class _historyState extends State<history> {
                 ),
               )
           ),
+          Text("나의 신고 처리 현황"),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Table(
+              border: TableBorder.all(
 
+              ),
+              children: <TableRow> [
+                TableRow(
+                    children: [
+                      Center(
+                        child: Text("총 신고 건수"),
+                      ),
+                      Center(
+                        child: Text("진행"),
+                      ),
+                      Center(
+                        child: Text("취하"),
+                      ),
+                      Center(
+                        child: Text("답변완료"),
+                      ),
+                    ]
+                ),
+                TableRow(
+                    children: [
+                      Center(
+                        child: Text("00건"),
+                      ),
+                      Center(
+                        child: Text("0건"),
+                      ),
+                      Center(
+                        child: Text("0건"),
+                      ),
+                      Center(
+                        child: Text("00건"),
+                      ),
+                    ]
+                ),
+              ],
+            ),
+          ),
         ]
       ),
     );
