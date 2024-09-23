@@ -34,8 +34,10 @@ class _mainscreen extends State<mainscreen> {
       title: "RIPC_Flutter",
       theme: ThemeData(
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              selectedItemColor: Colors.black,
-              selectedLabelStyle: TextStyle(fontSize: 12)
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.white,
+            selectedLabelStyle: TextStyle(fontSize: 16),
+            unselectedLabelStyle: TextStyle(fontSize: 16),
           )
       ),
       home: Scaffold(
@@ -43,29 +45,34 @@ class _mainscreen extends State<mainscreen> {
         body: Center(
           child: body[_currentIndex],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (int newIndex) {
-            setState(() {
-              _currentIndex = newIndex;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              label: '홈',
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          child : BottomNavigationBar(
+            backgroundColor: Color(0xff103C80),
+            currentIndex: _currentIndex,
+            iconSize: 30,
+            onTap: (int newIndex) {
+              setState(() {
+                _currentIndex = newIndex;
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                label: '홈',
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home),
+              ),
+              BottomNavigationBarItem(
+                label: '신고내역',
+                icon: Icon(Icons.list_alt_outlined),
+              ),
+              BottomNavigationBarItem(
+                label: '더보기',
+                icon: Icon(Icons.more_horiz),
+              ),
+            ],
             ),
-            BottomNavigationBarItem(
-              label: '신고내역',
-              icon: Icon(Icons.list_alt_outlined),
-            ),
-            BottomNavigationBarItem(
-              label: '더보기',
-              icon: Icon(Icons.more_horiz),
-            ),
-          ],
-        ),
+        )
       ),
     );
   }
