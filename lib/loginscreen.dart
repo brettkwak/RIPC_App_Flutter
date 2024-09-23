@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ripc_flutter/mainscreen.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:ripc_flutter/user_data.dart';
 import 'login_control.dart';
 
 class loginscreen extends StatelessWidget {
