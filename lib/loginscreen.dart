@@ -17,7 +17,16 @@ class loginscreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image(
+                image: AssetImage("assets/car_image.jpg"),
+                width: 400,
+                height: 400,
+              ),
+              SizedBox(
+                height: 32,
+              ),
               SignInButton(
+
                 Buttons.Google,
                 text: "Sign up with Google",
                 onPressed: () async {
