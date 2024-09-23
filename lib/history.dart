@@ -33,13 +33,13 @@ class _historyState extends State<history> {
       body: Column(
         children: [
           Container(
-            height: 5,
+            height: 40  ,
           ),
           Row(
             children: [
               Expanded(
                 child : Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
                     controller: _startDateController,
                     textAlign: TextAlign.center,
@@ -49,7 +49,7 @@ class _historyState extends State<history> {
                       ),
                       filled: false,
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors. black)
+                        borderSide: BorderSide(color: Colors.black)
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue)
@@ -67,7 +67,7 @@ class _historyState extends State<history> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
                     controller: _endDateController,
                     textAlign: TextAlign.center,
@@ -217,6 +217,10 @@ class _historyState extends State<history> {
           ),
           Expanded(
             child: Scrollbar(
+              thickness: 10,
+              thumbVisibility: true,
+              interactive: true,
+              radius: Radius.circular(10),
               child:
                 SingleChildScrollView(
                 // controller: _scrollController,
