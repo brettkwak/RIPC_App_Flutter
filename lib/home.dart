@@ -72,10 +72,12 @@ class home extends StatelessWidget {
               ],
             ),
             ),
-
+            Container(
+              height: 10,
+            ),
             Container(
               child: Center(
-                child: Text('24년 8월 신고 현황',
+                child: Text('24년 9월 신고 현황',
                   style: TextStyle(
                     fontSize: 20,
                     fontFamily: 'Pretendard',
