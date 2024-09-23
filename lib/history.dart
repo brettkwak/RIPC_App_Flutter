@@ -35,6 +35,7 @@ class _historyState extends State<history> {
                   padding: EdgeInsets.all(30),
                   child: TextField(
                     controller: _startDateController,
+                    textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       labelStyle: TextStyle(
                         fontSize: 10,
@@ -62,6 +63,7 @@ class _historyState extends State<history> {
                   padding: EdgeInsets.all(30),
                   child: TextField(
                     controller: _endDateController,
+                    textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         filled: false,
                         enabledBorder: OutlineInputBorder(
