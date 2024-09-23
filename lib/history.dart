@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:csv/csv.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
 
 class history extends StatefulWidget {
   // const ({super.key});
@@ -16,7 +22,7 @@ class _historyState extends State<history> {
   String selectedReportStatus = "";
   String selectedSearchType = "";
 
-  final int itemCount = 5;
+  final int itemCount = 0;
 
 
   @override
@@ -32,10 +38,6 @@ class _historyState extends State<history> {
   @override
   Widget build(BuildContext context) {
 
-    final List<String> _reportDate = List.generate(itemCount, (index) => 'Date index(${index + 1})');
-    final List<String> _reportLocation = List.generate(itemCount, (index) => 'Location index(${index + 1})'); // Ensure these images exist
-    final List<String> _reportStatus = List.generate(itemCount, (index) => ' Status index(${index + 1})'); // Ensure these images exist
-    // final List<String> _reportCarImage = List.generate(itemCount, (index) => 'assets/3d_car_${index + 1}.png'); // Ensure these images exist
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -225,56 +227,72 @@ class _historyState extends State<history> {
             ),
           ),
           Expanded(
-            child: Scrollbar(
-              thickness: 10,
-              thumbVisibility: true,
-              interactive: true,
-              radius: Radius.circular(10),
-              child:
-                SingleChildScrollView(
-                // controller: _scrollController,
-                child: Column(
-                  children: List.generate(
-                      itemCount,
-                          (index) => Column(
-                            children: [
-                              ListTile(
-                                title: Container(
-                                  child: Row(
-                                    children: [
-                                      Image(
-                                        image: AssetImage('assets/3d_car.png',),
-                                        width: 70,
-                                        height: 70,
-                                      ),
-                                      SizedBox(
-                                        width: 40,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('날짜 : ${_reportDate[index]}'),
-                                          Text('주소 : ${_reportLocation[index]}'),
-                                          Text('상태 : ${_reportStatus[index]}'),
-                                        ],
-                                      )
+              child: FutureBuilder(
+                future: loadCSV(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting){
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                    final items = snapshot.data!;
+                    return Scrollbar(
+                      thickness: 10,
+                      interactive: true,
+                      thumbVisibility: true,
+                      radius: Radius.circular(10),
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: Column(
+                          children: items.map((item) {
+                            return Column(
+                              children: [
+                                ListTile(
+                                  title: Container(
+                                    child: Row(
+                                      children: [
+                                        Image(
+                                          image: AssetImage(item['image_path']!),
+                                          width: 70,
+                                          height: 70,
 
-                                    ],
-
+                                          errorBuilder: (context, error, stackTrace) {
+                                            print('Loading image from: ${item['image_path']}');
+                                            print('Error loading image: ${item['image_path']}');
+                                            return const Icon(Icons.error); // Fallback icon
+                                          }
+                                        ),
+                                        SizedBox(width: 30),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('시간: ${item['report_time']}'),
+                                            Text('위치: ${item['report_location']}'),
+                                            Text('상태: ${item['report_status']}'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-
                                 ),
+                                Divider(),
+                              ],
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    );
 
-                                                      // title: Text('Item $index'),
-                                                    ),
-                              Divider(),
-                            ],
-                          ),
-                  ),
-                ),
-              ),
 
-            ),
+                  } else
+                    {
+                      return Center(
+                        child: Text('No Data Found :/'),
+                      );
+                    }
+                }
+              )
           ),
         ]
       ),
@@ -311,4 +329,28 @@ class _historyState extends State<history> {
     }
   }
 
+}
+
+Future<List<Map<String, String>>> loadCSV() async {
+  try {
+    final String data = await rootBundle.loadString('assets/data.csv');
+    List<List<dynamic>> csvTable = const CsvToListConverter().convert(data);
+
+    // Convert the CSV data into a list of maps
+    List<Map<String, String>> items = [];
+    for (var i = 1; i < csvTable.length; i++) {
+      print("Row $i : ${csvTable[i]}");
+      items.add({
+        'vehicle_number': csvTable[i][0].toString(),
+        'report_time': csvTable[i][1].toString(),
+        'report_location': csvTable[i][2].toString(),
+        'image_path': csvTable[i][3].toString(),
+        'report_status': csvTable[i][4].toString(),
+      });
+    }
+    return items;
+  } catch (e){
+    print("Error loading CSV $e");
+    return[];
+  }
 }
