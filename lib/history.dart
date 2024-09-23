@@ -178,7 +178,6 @@ class _historyState extends State<history> {
             padding: EdgeInsets.all(10),
             child: Table(
               border: TableBorder.all(
-
               ),
               children: <TableRow> [
                 TableRow(
@@ -214,6 +213,23 @@ class _historyState extends State<history> {
                     ]
                 ),
               ],
+            ),
+          ),
+          Expanded(
+            child: Scrollbar(
+              child:
+                SingleChildScrollView(
+                // controller: _scrollController,
+                child: Column(
+                  children: List.generate(
+                      50,
+                          (index) => ListTile(
+                        title: Text('Item $index'),
+                      )
+                  ),
+                ),
+              ),
+
             ),
           ),
         ]
