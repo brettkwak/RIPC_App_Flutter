@@ -53,17 +53,17 @@ class _mainscreen extends State<mainscreen> {
           },
           items: const [
             BottomNavigationBarItem(
-              label: 'Home',
+              label: '홈',
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
-              label: 'History',
-              icon: Icon(Icons.folder),
+              label: '신고내역',
+              icon: Icon(Icons.list_alt_outlined),
             ),
             BottomNavigationBarItem(
-              label: 'Settings',
-              icon: Icon(Icons.settings),
+              label: '더보기',
+              icon: Icon(Icons.more_horiz),
             ),
           ],
         ),
