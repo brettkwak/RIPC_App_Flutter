@@ -144,7 +144,35 @@ class _historyState extends State<history> {
               ),
             ]
           ),
+          Container(
+              child: Container(
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: Colors.black,
+                  )
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: '검색어를 입력하세요.',
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric( horizontal: 12)
+                          ),
 
+                        )
+                    ),
+                    IconButton(
+                        onPressed: (){},
+                        icon: Icon(Icons.search),
+                    ),
+                  ],
+                ),
+              )
+          ),
 
         ]
       ),
