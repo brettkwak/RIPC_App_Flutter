@@ -9,68 +9,84 @@ class history extends StatefulWidget {
 
 class _historyState extends State<history> {
 
-  TextEditingController _dateController = TextEditingController();
+  TextEditingController _startDateController = TextEditingController();
+  TextEditingController _endDateController = TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    _startDateController.text = DateTime.now().subtract(const Duration(days: 30)).toString().split(" ")[0];
+    _endDateController.text = DateTime.now().toString().split(" ")[0];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Row(
-          children: [
-            Expanded(
-              child : Padding(
-                padding: EdgeInsets.all(30),
-                child: TextField(
-                  controller: _dateController,
-                  decoration: InputDecoration(
-                    labelText: 'START DATE',
-                    filled: false,
-                    prefixIcon: Icon(Icons.calendar_today),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors. black)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue)
-                    )
-                  ),
-                  readOnly: true,
-                  onTap: (){
-                    _selectDate();
-                  },
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(30),
-                child: TextField(
-                  controller: _dateController,
-                  decoration: InputDecoration(
-                      labelText: 'END DATE',
+      body: Column(
+        children: [
+          Container(
+            height: 50,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child : Padding(
+                  padding: EdgeInsets.all(30),
+                  child: TextField(
+                    controller: _startDateController,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                        fontSize: 10,
+                      ),
                       filled: false,
-                      prefixIcon: Icon(Icons.calendar_today),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)
+                        borderSide: BorderSide(color: Colors. black)
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)
+                        borderSide: BorderSide(color: Colors.blue)
                       )
+                    ),
+                    readOnly: true,
+                    onTap: (){
+                      _selectStartDate();
+                    },
                   ),
-                  readOnly: true,
-                  onTap: (){
-                    _selectDate();
-                  },
                 ),
               ),
-            ),
-          ],
-        ),
+              Container(
+                child: Text("~"),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(30),
+                  child: TextField(
+                    controller: _endDateController,
+                    decoration: InputDecoration(
+                        filled: false,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue)
+                        )
+                    ),
+                    readOnly: true,
+                    onTap: (){
+                      _selectEndDate();
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+        ]
       ),
     );
   }
 
-  Future<void> _selectDate() async{
+  Future<void> _selectStartDate() async{
     DateTime? _picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
@@ -80,7 +96,22 @@ class _historyState extends State<history> {
 
     if (_picked != null){
       setState(() {
-        _dateController.text = _picked.toString().split(" ")[0];
+        _startDateController.text = _picked.toString().split(" ")[0];
+      });
+    }
+  }
+
+  Future<void> _selectEndDate() async{
+    DateTime? _picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100)
+    );
+
+    if (_picked != null){
+      setState(() {
+        _endDateController.text = _picked.toString().split(" ")[0];
       });
     }
   }
