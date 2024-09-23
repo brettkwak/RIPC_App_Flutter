@@ -17,6 +17,51 @@ class home extends StatelessWidget {
               height: 100,
               color: Colors.white,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.campaign),
+                        Text('공지사항'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 13,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.assignment),
+                        Text('앱 소개'),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.info),
+                        Text('서비스 개요'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 13,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.support_agent),
+                        Text('신고 절차 안내'),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            )
 
 
 
