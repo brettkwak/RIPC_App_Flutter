@@ -21,7 +21,7 @@ class loginscreen extends StatelessWidget {
                 Buttons.Google,
                 text: "Sign up with Google",
                 onPressed: () async {
-                  loginProcess();
+                  await loginProcess();
                   askforpermission();
                   Navigator.pushReplacement(
                     context,
