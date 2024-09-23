@@ -11,10 +11,13 @@ class _historyState extends State<history> {
 
   TextEditingController _startDateController = TextEditingController();
   TextEditingController _endDateController = TextEditingController();
-  final _reportStatus = ['전체', '진행중', '취하', '답변완료'];
+  final _reportSearchStatus = ['전체', '진행중', '취하', '답변완료'];
   final _searchType = ['주소', '차량번호'];
   String selectedReportStatus = "";
   String selectedSearchType = "";
+
+  final int itemCount = 5;
+
 
   @override
   void initState(){
@@ -22,12 +25,18 @@ class _historyState extends State<history> {
     _startDateController.text = DateTime.now().subtract(const Duration(days: 30)).toString().split(" ")[0];
     _endDateController.text = DateTime.now().toString().split(" ")[0];
 
-    selectedReportStatus = _reportStatus[0];
+    selectedReportStatus = _reportSearchStatus[0];
     selectedSearchType = _searchType[0];
   }
 
   @override
   Widget build(BuildContext context) {
+
+    final List<String> _reportDate = List.generate(itemCount, (index) => 'Date index(${index + 1})');
+    final List<String> _reportLocation = List.generate(itemCount, (index) => 'Location index(${index + 1})'); // Ensure these images exist
+    final List<String> _reportStatus = List.generate(itemCount, (index) => ' Status index(${index + 1})'); // Ensure these images exist
+    // final List<String> _reportCarImage = List.generate(itemCount, (index) => 'assets/3d_car_${index + 1}.png'); // Ensure these images exist
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -104,7 +113,7 @@ class _historyState extends State<history> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 12)
                     ),
                     value: selectedReportStatus,
-                    items: _reportStatus
+                    items: _reportSearchStatus
                         .map((e) => DropdownMenuItem(
                           value: e, // 선택 시 onChanged 를 통해 반환할 value
                           child: Text(e),
@@ -226,10 +235,41 @@ class _historyState extends State<history> {
                 // controller: _scrollController,
                 child: Column(
                   children: List.generate(
-                      50,
-                          (index) => ListTile(
-                        title: Text('Item $index'),
-                      )
+                      itemCount,
+                          (index) => Column(
+                            children: [
+                              ListTile(
+                                title: Container(
+                                  child: Row(
+                                    children: [
+                                      Image(
+                                        image: AssetImage('assets/3d_car.png',),
+                                        width: 70,
+                                        height: 70,
+                                      ),
+                                      SizedBox(
+                                        width: 40,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('날짜 : ${_reportDate[index]}'),
+                                          Text('주소 : ${_reportLocation[index]}'),
+                                          Text('상태 : ${_reportStatus[index]}'),
+                                        ],
+                                      )
+
+                                    ],
+
+                                  ),
+
+                                ),
+
+                                                      // title: Text('Item $index'),
+                                                    ),
+                              Divider(),
+                            ],
+                          ),
                   ),
                 ),
               ),
