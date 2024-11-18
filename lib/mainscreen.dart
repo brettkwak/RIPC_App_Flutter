@@ -46,10 +46,14 @@ class _mainscreen extends State<mainscreen> {
         body: Center(
           child: body[_currentIndex],
         ),
-        bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          child : BottomNavigationBar(
-            backgroundColor: Color(0xff103C80),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey,
+            )
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white,
             currentIndex: _currentIndex,
             iconSize: 30,
             onTap: (int newIndex) {
@@ -72,6 +76,8 @@ class _mainscreen extends State<mainscreen> {
                 icon: Icon(Icons.more_horiz),
               ),
             ],
+            unselectedItemColor: Colors.black,
+            selectedItemColor: Color(0xff103C80),
             ),
         )
       ),
