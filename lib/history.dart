@@ -263,49 +263,12 @@ class _historyState extends State<history> {
                                                     borderRadius: BorderRadius.circular(20),
                                                   ),
                                                   child: Container(
-                                                    width: 300, // Adjust width
-                                                    height: 400, // Adjust height
+                                                    width: 300,
+                                                    height: 400,
                                                     child: Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
-
-
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            // Open another image in a new dialog
-                                                            showDialog(
-                                                              context: context,
-                                                              builder: (BuildContext context) {
-                                                                return Dialog(
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(20),
-                                                                  ),
-                                                                  child: Container(
-                                                                    width: 500, // Adjust width for the new dialog
-                                                                    height: 500, // Adjust height for the new dialog
-                                                                    child: ClipRRect(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                      child: Image(
-                                                                        image: AssetImage('assets/map2.png'), // Replace with your new image path
-                                                                        fit: BoxFit.cover,
-                                                                        errorBuilder: (context, error, stackTrace) {
-                                                                          return const Icon(Icons.error); // Fallback icon
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                          child: Image(
-                                                            image: AssetImage('assets/gps.png'),
-                                                            height: 80,
-                                                            width: 80,
-                                                          ),
-                                                        ),
-
-
+                                                        _buildGPSMap(context),
                                                         SizedBox(
                                                           height: 10,
                                                         ),
@@ -434,4 +397,41 @@ Future<List<Map<String, String>>> loadCSV() async {
     print("Error loading CSV $e");
     return[];
   }
+}
+
+
+Widget _buildGPSMap(BuildContext context){
+  return GestureDetector(
+    onTap: () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Container(
+              width: 500,
+              height: 500,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image(
+                  image: AssetImage('assets/map2.png'),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.error); // Fallback icon
+                  },
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    },
+    child: Image(
+      image: AssetImage('assets/gps.png'),
+      height: 80,
+      width: 80,
+    ),
+  );
 }
