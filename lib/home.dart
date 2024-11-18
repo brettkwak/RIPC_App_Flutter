@@ -6,6 +6,7 @@ class home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Home screen",
       home: Scaffold(
         backgroundColor: Colors.white,
@@ -77,7 +78,7 @@ class home extends StatelessWidget {
             ),
             Container(
               child: Center(
-                child: Text('24년 9월 신고 현황',
+                child: Text('24년 11월 신고 현황',
                   style: TextStyle(
                     fontSize: 20,
                     fontFamily: 'Pretendard',
@@ -120,16 +121,16 @@ class home extends StatelessWidget {
                   TableRow(
                       children: [
                         Center(
-                          child: Text("00건"),
+                          child: Text("100건"),
                         ),
                         Center(
-                          child: Text("0건"),
+                          child: Text("5건"),
                         ),
                         Center(
-                          child: Text("0건"),
+                          child: Text("10건"),
                         ),
                         Center(
-                          child: Text("00건"),
+                          child: Text("85건"),
                         ),
                       ]
                   ),
