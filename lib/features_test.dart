@@ -14,48 +14,46 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'test',
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 400,
-              ),
-              OutlinedButton(
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LocationScreen())
-                    );
-                  },
-                  child: Text('GPS',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
+    return Scaffold(
+      appBar: AppBar(title: Text("Test"),),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 400,
+            ),
+            OutlinedButton(
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LocationScreen())
+                  );
+                },
+                child: Text('GPS',
+                  style: TextStyle(
+                    color: Colors.black,
                   ),
-              ),
-              OutlinedButton.icon(
-                icon: Icon(Icons.logout),
-                  onPressed: (){
-                    LoginAPI.logOut;
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => loginscreen(),
-                        ),
-                    );
-                  },
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.red,
                 ),
-                label: Text('LogOut'),
+            ),
+            OutlinedButton.icon(
+              icon: Icon(Icons.logout),
+                onPressed: (){
+                  LoginAPI.logOut;
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => loginscreen(),
+                      ),
+                  );
+                },
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.red,
               ),
-            ],
-          ),
+              label: Text('LogOut'),
+            ),
+          ],
         ),
       ),
     );
