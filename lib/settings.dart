@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ripc_flutter/about.dart';
-import 'package:ripc_flutter/loginscreen.dart';
 import 'package:ripc_flutter/user_data.dart';
 import 'login_control.dart';
+import 'features_test.dart';
 
 
 class settings extends StatelessWidget {
@@ -127,42 +126,21 @@ class settings extends StatelessWidget {
                       ListTile(
                         leading: Icon(Icons.info_outline),
                         title: Text('앱 정보'),
-                        trailing: Text('1.0.0', style: TextStyle(color: Colors.grey)),
+                        trailing: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => TestScreen())
+                            );
+                          },
+                          child: Text('1.0.0',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
                       ),
                     ],
                   ),
             ),
-
-
-            // OutlinedButton(
-            //   child: Text('About'),
-            //   onPressed: (){
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => about(),
-            //       ),
-            //     );
-            //   },
-            //   style: OutlinedButton.styleFrom(
-            //     foregroundColor: Colors.black,
-            //   ),
-            // ),
-            // OutlinedButton(
-            //   child: Text('Logout'),
-            //   onPressed: (){
-            //     LoginAPI.logOut;
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => loginscreen(),
-            //       ),
-            //     );
-            //   },
-            //   style: OutlinedButton.styleFrom(
-            //     foregroundColor: Colors.red,
-            //   ),
-            // ),
           ],
         ),
       ),
