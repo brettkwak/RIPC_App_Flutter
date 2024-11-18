@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
@@ -8,12 +9,70 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  String _locationMessage = "Getting location...";
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.requestPermission();
+
+    if (permission == LocationPermission.denied) {
+      setState(() {
+        _locationMessage = "Location permissions are denied";
+      });
+      return;
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      setState(() {
+        _locationMessage = "Location permissions are permanently denied";
+      });
+      return;
+    }
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      setState(() {
+        _locationMessage = "위도: ${position.latitude}\n경도: ${position.longitude}";
+      });
+    } catch (e) {
+      setState(() {
+        _locationMessage = "Failed to get location: $e";
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("GPS Location")),
       body: Center(
-
+        child: Column(
+          children: [
+            SizedBox(
+              height: 170,
+            ),
+            Image(
+              // example image
+              image: AssetImage('assets/mapt.png'),
+              width: 300,
+              height: 300,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              _locationMessage,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15),
+            ),
+          ],
+        ),
       ),
     );
   }
