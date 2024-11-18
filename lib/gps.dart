@@ -10,9 +10,9 @@ class LocationScreen extends StatefulWidget {
 class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'gps screen',
-      home: Scaffold(
+    return Scaffold(
+      appBar: AppBar(title: Text("GPS Location")),
+      body: Center(
 
       ),
     );
