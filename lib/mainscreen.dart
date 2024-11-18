@@ -31,6 +31,7 @@ class _mainscreen extends State<mainscreen> {
     body.insert(2, settings());
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "RIPC_Flutter",
       theme: ThemeData(
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
