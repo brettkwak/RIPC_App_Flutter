@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ripc_flutter/loginscreen.dart';
 import 'login_control.dart';
+import 'gps.dart';
+
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
@@ -21,6 +23,20 @@ class _TestScreenState extends State<TestScreen> {
             children: [
               SizedBox(
                 height: 400,
+              ),
+              OutlinedButton(
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen())
+                    );
+                  },
+                  child: Text('GPS',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
               ),
               OutlinedButton.icon(
                 icon: Icon(Icons.logout),
