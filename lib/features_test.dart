@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ripc_flutter/loginscreen.dart';
 import 'login_control.dart';
 import 'gps.dart';
+import 'notifications.dart';
 
 
 class TestScreen extends StatefulWidget {
@@ -22,6 +23,16 @@ class _TestScreenState extends State<TestScreen> {
           children: [
             SizedBox(
               height: 400,
+            ),
+            OutlinedButton(
+                onPressed: () {
+                  FlutterLocalNotification.showNotification();
+                },
+                child: Text("Notification",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                )
             ),
             OutlinedButton(
                 onPressed: (){
