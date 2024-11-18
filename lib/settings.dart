@@ -4,6 +4,7 @@ import 'package:ripc_flutter/loginscreen.dart';
 import 'package:ripc_flutter/user_data.dart';
 import 'login_control.dart';
 
+
 class settings extends StatelessWidget {
   const settings({super.key});
 
@@ -14,57 +15,72 @@ class settings extends StatelessWidget {
     String? user_name = user_data().user_name;
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Settings',
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Column(
           children: [
             Container(
-              height: 100,
-              color: Colors.white,
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 40,
-                ),
-                CircleAvatar(
-                  radius: 30,
-                  child: ClipOval(
-                    child: Image.network('$profile_image_url'),
+              color: Color(0xff103C80),
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
                   ),
-                ),
-                Container(
-                  width: 20,
-                ),
-                // Text('$email'),
-                Text('$user_name'),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                      ),
+                      CircleAvatar(
+                        radius: 30,
+                        child: ClipOval(
+                          child: Image.network('$profile_image_url'),
+                        ),
+                      ),
+                      Container(
+                        width: 20,
+                      ),
+                      // Text('$email'),
+                      Text('$user_name',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Pretendard',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                        ),
+                      ),
 
-                Container(
-                  width: 80,
-                ),
-                ElevatedButton.icon(
-                  icon: Image.asset(
-                    'assets/google_logo.png', // Path to your Google logo
-                    height: 20, // Height for the logo
-                    width: 20,  // Width for the logo
-                  ),
-                  onPressed: (){},
-                  label: Text('계정 관리'),
+                      Container(
+                        width: 40,
+                      ),
+                      ElevatedButton.icon(
+                        icon: Image.asset(
+                          'assets/google_logo.png', // Path to your Google logo
+                          height: 20, // Height for the logo
+                          width: 20,  // Width for the logo
+                        ),
+                        onPressed: (){},
+                        label: Text('계정 관리'),
 
-                  // style: ElevatedButton.styleFrom(
-                  //   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12)
-                  // ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    side: BorderSide(color: Colors.grey),
+                        // style: ElevatedButton.styleFrom(
+                        //   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12)
+                        // ),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          side: BorderSide(color: Colors.grey),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
+                  Container(
+                    height: 50,
+                  ),
+                ],
+              ),
             ),
-            Container(
-              height: 50,
-            ),
+
             Divider(
               color: Colors.grey[400],
             ),
