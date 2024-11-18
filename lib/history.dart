@@ -44,7 +44,7 @@ class _historyState extends State<history> {
       body: Column(
         children: [
           Container(
-            height: 40  ,
+            height: 40,
           ),
           Row(
             children: [
@@ -197,29 +197,29 @@ class _historyState extends State<history> {
                         child: Text("총 신고 건수"),
                       ),
                       Center(
-                        child: Text("진행"),
+                        child: Text("진행 중"),
                       ),
                       Center(
                         child: Text("취하"),
                       ),
                       Center(
-                        child: Text("답변완료"),
+                        child: Text("답변 완료"),
                       ),
                     ]
                 ),
                 TableRow(
                     children: [
                       Center(
-                        child: Text("00건"),
+                        child: Text("5건"),
                       ),
                       Center(
-                        child: Text("0건"),
+                        child: Text("1건"),
                       ),
                       Center(
-                        child: Text("0건"),
+                        child: Text("1건"),
                       ),
                       Center(
-                        child: Text("00건"),
+                        child: Text("3건"),
                       ),
                     ]
                 ),
@@ -268,6 +268,7 @@ class _historyState extends State<history> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text('시간: ${item['report_time']}'),
+                                            Text('차량 번호: ${item['vehicle_number']}'),
                                             Text('위치: ${item['report_location']}'),
                                             Text('상태: ${item['report_status']}'),
                                           ],
