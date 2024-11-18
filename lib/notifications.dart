@@ -46,6 +46,11 @@ class FlutterLocalNotification {
     await flutterLocalNotificationsPlugin.show(
         1, 'Title', 'body', notificationDetails);
   }
+
+  static Future<void> showNotificationAfterDelay() async {
+    await Future.delayed(Duration(seconds: 3));
+    await showNotification();
+  }
 }
 
 
