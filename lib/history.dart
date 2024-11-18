@@ -252,17 +252,53 @@ class _historyState extends State<history> {
                                   title: Container(
                                     child: Row(
                                       children: [
-                                        Image(
-                                          image: AssetImage(item['image_path']!),
-                                          width: 70,
-                                          height: 70,
 
-                                          errorBuilder: (context, error, stackTrace) {
-                                            print('Loading image from: ${item['image_path']}');
-                                            print('Error loading image: ${item['image_path']}');
-                                            return const Icon(Icons.error); // Fallback icon
-                                          }
+
+                                        GestureDetector(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Dialog(
+                                                  backgroundColor: Colors.transparent,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(20),
+                                                  ),
+                                                  child: Container(
+                                                    width: 300, // Adjust width
+                                                    height: 300, // Adjust height
+                                                    child: ClipRRect(
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      child: Container(
+                                                        height: 300,
+                                                        width: 300,
+                                                        child: Image(
+                                                          image: AssetImage(item['image_path']!),
+                                                          fit: BoxFit.cover,
+                                                          errorBuilder: (context, error, stackTrace) {
+                                                            return const Icon(Icons.error); // Fallback icon
+                                                          },
+                                                        ),
+                                                      )
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Image(
+                                            image: AssetImage(item['image_path']!),
+                                            width: 110,
+                                            height: 110,
+                                            errorBuilder: (context, error, stackTrace) {
+                                              print('Loading image from: ${item['image_path']}');
+                                              print('Error loading image: ${item['image_path']}');
+                                              return const Icon(Icons.error); // Fallback icon
+                                            },
+                                          ),
                                         ),
+
+
                                         SizedBox(width: 30),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
