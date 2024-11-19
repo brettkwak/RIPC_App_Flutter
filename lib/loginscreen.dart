@@ -10,16 +10,34 @@ class loginscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Login Screen",
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text('R I P C',
+                style: TextStyle(
+                  fontSize: 50,
+                  fontFamily: 'Pretendard',
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+              Text('실시간 불법 주정차 단속 시스템',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontFamily: 'Pretendard',
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
               Image(
-                image: AssetImage("assets/car_image.jpg"),
-                width: 400,
-                height: 400,
+                image: AssetImage("assets/3d_car.png"),
+                width: 200,
+                height: 200,
               ),
               SizedBox(
                 height: 32,
