@@ -13,6 +13,8 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen> {
   String _locationMessage = "Getting location...";
+  double? latitude;
+  double? longitude;
 
   @override
   void initState() {
@@ -40,6 +42,8 @@ class _LocationScreenState extends State<LocationScreen> {
     try {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       setState(() {
+        latitude = position.latitude;
+        longitude = position.longitude;
         _locationMessage = "위도: ${position.latitude}\n경도: ${position.longitude}";
       });
     } catch (e) {
@@ -66,6 +70,8 @@ class _LocationScreenState extends State<LocationScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => NaverMapApp(
+                          latitude: latitude!,
+                          longitude: longitude!,
                         ))
                   );
                 },
