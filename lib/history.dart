@@ -263,32 +263,24 @@ class _historyState extends State<history> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(20),
                                                   ),
-                                                  child: Container(
-                                                    width: 300,
-                                                    height: 400,
-                                                    child: Column(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        _buildGPSMap(context),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        ClipRRect(
-                                                          borderRadius: BorderRadius.circular(20),
-                                                          child: Container(
-                                                            height: 300,
-                                                            width: 300,
-                                                            child: Image(
-                                                              image: AssetImage(item['image_path']!),
-                                                              fit: BoxFit.cover,
-                                                              errorBuilder: (context, error, stackTrace) {
-                                                                return const Icon(Icons.error); // Fallback icon
-                                                              },
-                                                            ),
-                                                          )
-                                                        ),
-                                                      ],
-                                                    ),
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius: BorderRadius.circular(20),
+                                                        child: Container(
+                                                          height: 400,
+                                                          width: 400,
+                                                          child: Image(
+                                                            image: AssetImage(item['image_path']!),
+                                                            fit: BoxFit.cover,
+                                                            errorBuilder: (context, error, stackTrace) {
+                                                              return const Icon(Icons.error); // Fallback icon
+                                                            },
+                                                          ),
+                                                        )
+                                                      ),
+                                                    ],
                                                   ),
                                                 );
                                               },
@@ -313,7 +305,30 @@ class _historyState extends State<history> {
                                           children: [
                                             Text('시간: ${item['report_time']}'),
                                             Text('차량 번호: ${item['vehicle_number']}'),
-                                            Text('위치: ${item['report_location']}'),
+                                            Row(
+                                              children: [
+                                                Text('위치: ${item['report_location']}'),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) => NaverMapApp(
+                                                          latitude: 37.552785,
+                                                          longitude: 126.924445,
+                                                        )
+                                                    );
+                                                  },
+                                                  child: Image(
+                                                    image: AssetImage('assets/navermap_image.jpg'),
+                                                    height: 25,
+                                                    width: 25,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                             Text('상태: ${item['report_status']}'),
                                           ],
                                         ),
@@ -398,24 +413,4 @@ Future<List<Map<String, String>>> loadCSV() async {
     print("Error loading CSV $e");
     return[];
   }
-}
-
-
-Widget _buildGPSMap(BuildContext context){
-  return GestureDetector(
-    onTap: () {
-      showDialog(
-        context: context,
-          builder: (context) => NaverMapApp(
-            latitude: 37.552785,
-            longitude: 126.924445,
-          )
-      );
-    },
-    child: Image(
-      image: AssetImage('assets/gps.png'),
-      height: 80,
-      width: 80,
-    ),
-  );
 }
