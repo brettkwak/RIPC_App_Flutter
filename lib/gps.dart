@@ -71,6 +71,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 },
                 icon: Icon(Icons.outbond)
             ),
+            SizedBox(
               height: 20,
             ),
             Text(
