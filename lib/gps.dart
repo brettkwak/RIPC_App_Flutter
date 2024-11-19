@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:ripc_flutter/naver.dart';
+
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
@@ -57,13 +60,17 @@ class _LocationScreenState extends State<LocationScreen> {
             SizedBox(
               height: 170,
             ),
-            Image(
-              // example image
-              image: AssetImage('assets/mapt.png'),
-              width: 300,
-              height: 300,
+            IconButton.outlined(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NaverMapApp(
+                        ))
+                  );
+                },
+                icon: Icon(Icons.outbond)
             ),
-            SizedBox(
               height: 20,
             ),
             Text(
