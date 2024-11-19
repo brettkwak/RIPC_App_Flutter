@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'naver.dart';
 
 
 class history extends StatefulWidget {
@@ -405,27 +406,10 @@ Widget _buildGPSMap(BuildContext context){
     onTap: () {
       showDialog(
         context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Container(
-              width: 500,
-              height: 500,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image(
-                  image: AssetImage('assets/map2.png'),
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.error); // Fallback icon
-                  },
-                ),
-              ),
-            ),
-          );
-        },
+          builder: (context) => NaverMapApp(
+            latitude: 37.552785,
+            longitude: 126.924445,
+          )
       );
     },
     child: Image(
