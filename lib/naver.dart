@@ -65,6 +65,10 @@ class _NaverMapScreenState extends State<NaverMapScreen> {
         ),
         onMapReady: (controller) {
           print("Naver Map Loaded");
+          final marker = NMarker(
+              id: 'Marker 1',
+              position: NLatLng(37.552785, 126.924445));
+          controller.addOverlay(marker);
         },
       ),
     );
