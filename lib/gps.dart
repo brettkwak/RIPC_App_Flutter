@@ -75,7 +75,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         ))
                   );
                 },
-                icon: Icon(Icons.outbond)
+                icon: Icon(Icons.pin_drop)
             ),
             SizedBox(
               height: 20,
